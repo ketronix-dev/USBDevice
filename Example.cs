@@ -1,10 +1,12 @@
+using GetUSBDevice;
+
 class Example
 {
     static void Main()
     {
-        List<string> text = USBDevice.GetList();
-        string cap = USBDevice.GetUSBDeviceCapacity("/dev/sdb");
-        string model = USBDevice.GetUSBDeviceModel("/dev/sdb");
+        var text = USBDevice.GetList();
+        var cap = USBDevice.GetUsbDeviceCapacity("/dev/sdb");
+        var model = USBDevice.GetUsbDeviceModel("/dev/sdb");
         Console.WriteLine(text[0]);
         Console.WriteLine(cap);
         Console.WriteLine(model);

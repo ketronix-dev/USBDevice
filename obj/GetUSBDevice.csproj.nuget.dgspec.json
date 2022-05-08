@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/fast/Документы/GetUSBDevice/GetUSBDevice.csproj": {}
+    "/var/home/akergez/repos/USBDevice/GetUSBDevice.csproj": {}
   },
   "projects": {
-    "/home/fast/Документы/GetUSBDevice/GetUSBDevice.csproj": {
+    "/var/home/akergez/repos/USBDevice/GetUSBDevice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/fast/Документы/GetUSBDevice/GetUSBDevice.csproj",
+        "projectUniqueName": "/var/home/akergez/repos/USBDevice/GetUSBDevice.csproj",
         "projectName": "GetUSBDevice",
-        "projectPath": "/home/fast/Документы/GetUSBDevice/GetUSBDevice.csproj",
-        "packagesPath": "/home/fast/.nuget/packages/",
-        "outputPath": "/home/fast/Документы/GetUSBDevice/obj/",
+        "projectPath": "/var/home/akergez/repos/USBDevice/GetUSBDevice.csproj",
+        "packagesPath": "/var/home/akergez/.nuget/packages/",
+        "outputPath": "/var/home/akergez/repos/USBDevice/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/fast/.nuget/NuGet/NuGet.Config"
+          "/var/home/akergez/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -52,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.202/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/6.0.104/RuntimeIdentifierGraph.json"
         }
       }
     }
