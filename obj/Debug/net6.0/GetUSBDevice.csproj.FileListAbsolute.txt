@@ -1,0 +1,15 @@
+/home/fast/Документы/GetUSBDevice/bin/Debug/net6.0/GetUSBDevice
+/home/fast/Документы/GetUSBDevice/bin/Debug/net6.0/GetUSBDevice.deps.json
+/home/fast/Документы/GetUSBDevice/bin/Debug/net6.0/GetUSBDevice.runtimeconfig.json
+/home/fast/Документы/GetUSBDevice/bin/Debug/net6.0/GetUSBDevice.dll
+/home/fast/Документы/GetUSBDevice/bin/Debug/net6.0/GetUSBDevice.pdb
+/home/fast/Документы/GetUSBDevice/obj/Debug/net6.0/GetUSBDevice.csproj.AssemblyReference.cache
+/home/fast/Документы/GetUSBDevice/obj/Debug/net6.0/GetUSBDevice.GeneratedMSBuildEditorConfig.editorconfig
+/home/fast/Документы/GetUSBDevice/obj/Debug/net6.0/GetUSBDevice.AssemblyInfoInputs.cache
+/home/fast/Документы/GetUSBDevice/obj/Debug/net6.0/GetUSBDevice.AssemblyInfo.cs
+/home/fast/Документы/GetUSBDevice/obj/Debug/net6.0/GetUSBDevice.csproj.CoreCompileInputs.cache
+/home/fast/Документы/GetUSBDevice/obj/Debug/net6.0/GetUSBDevice.dll
+/home/fast/Документы/GetUSBDevice/obj/Debug/net6.0/refint/GetUSBDevice.dll
+/home/fast/Документы/GetUSBDevice/obj/Debug/net6.0/GetUSBDevice.pdb
+/home/fast/Документы/GetUSBDevice/obj/Debug/net6.0/GetUSBDevice.genruntimeconfig.cache
+/home/fast/Документы/GetUSBDevice/obj/Debug/net6.0/ref/GetUSBDevice.dll

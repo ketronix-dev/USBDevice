@@ -1,17 +1,17 @@
 using System.Diagnostics;
 class CoreCommands
 {
-    static string ExecShellCommand(string command, string arguments = "")
+    public static string ExecShellCommand(string command, string arguments = "")
     {
         ProcessStartInfo psi; // объявляем переменную с информацией о процессе.
 
-        if(arguments != "")
+        if(arguments != "") // проверяем, пустой ли аргумент
         {
-            psi = new ProcessStartInfo(command, arguments); // передаем команду процесса.
+            psi = new ProcessStartInfo(command, arguments); // если аргументы есть - добавить аргументы в команду процесса
         }
         else
         {
-            psi = new ProcessStartInfo(command); // передаем команду процесса.
+            psi = new ProcessStartInfo(command); // Если аргументов нет - добавляем только команду.
         }
 
         psi.UseShellExecute = false; // переводим программу в CLI режим.
