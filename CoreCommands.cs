@@ -1,28 +1,26 @@
 using System.Diagnostics;
-class CoreCommands
+
+namespace GetUSBDevice;
+
+public static class CoreCommands
 {
     public static string ExecShellCommand(string command, string arguments = "")
     {
-        ProcessStartInfo psi; // объявляем переменную с информацией о процессе.
+        var processStartInfo =
+            arguments != "" ? new ProcessStartInfo(command, arguments) : new ProcessStartInfo(command);
 
-        if(arguments != "") // проверяем, пустой ли аргумент
-        {
-            psi = new ProcessStartInfo(command, arguments); // если аргументы есть - добавить аргументы в команду процесса
-        }
-        else
-        {
-            psi = new ProcessStartInfo(command); // Если аргументов нет - добавляем только команду.
-        }
+        // переводим программу в CLI режим.
+        processStartInfo.UseShellExecute = false;
 
-        psi.UseShellExecute = false; // переводим программу в CLI режим.
-        psi.RedirectStandardOutput = true; // разрешаем читать вывод процесса.
+        // разрешаем читать вывод процесса.
+        processStartInfo.RedirectStandardOutput = true;
 
-        Process _process = new Process(); // создаем процесс.
+        var process = new Process();
+        process.StartInfo = processStartInfo;
 
-        _process.StartInfo = psi; // передаем конфигурацию процесса.
-        _process.Start(); // запускаем процесс.
+        process.Start();
+        var output = process.StandardOutput.ReadToEnd();
 
-        string output = _process.StandardOutput.ReadToEnd(); // сохраняем вывод в переменную.
         return output;
     }
 }

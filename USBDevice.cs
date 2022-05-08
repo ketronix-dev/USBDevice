@@ -1,60 +1,46 @@
 ﻿using System.Text.RegularExpressions;
 
+namespace GetUSBDevice;
+
 class USBDevice
 {
     public static List<string> GetList()
     {
-        List<string> device_list = new List<string>();
-        //Выполняем системную команду, чтобы получить список устройств.
-        string lsblk = CoreCommands.ExecShellCommand("lsblk", "--output NAME --noheadings --nodeps");
-        //Возвращаем только те устройства, которые не являются CD/DVD
-        string[] devices = Regex.Replace(lsblk , "sr[0-9]|cdrom[0-9]", "").Split();
+        var devicesListFromLsbls = CoreCommands.ExecShellCommand("lsblk", "--output NAME --noheadings --nodeps");
 
-        foreach (var device in devices)
+        return Regex.Replace(devicesListFromLsbls, "sr[0-9]|cdrom[0-9]", "")
+            .Split()
+            .Where(IsRemovable)
+            .Select(x => "/dev/" + x)
+            .ToList();
+    }
+
+    public static string GetUsbDeviceCapacity(string device)
+    {
+        return CoreCommands.ExecShellCommand("lsblk", "--output SIZE --noheadings --nodeps " + device)
+            .Trim();
+    }
+
+    public static string GetUsbDeviceModel(string device)
+    {
+        return CoreCommands.ExecShellCommand("lsblk", "--output MODEL --noheadings --nodeps " + device)
+            .Trim();
+    }
+
+    public static bool IsRemovable(string device)
+    {
+        var returnedValue = false;
+
+        var sysfsBlockDeviceDir = "/sys/block/" + device;
+
+        if (File.Exists(sysfsBlockDeviceDir + "/removable"))
         {
-            if(IsRemovable(device) != false)
-            {
-                string block_device = "/dev/" + device;
+            var removableContent = File.ReadAllText("/sys/block/" + device + "/removable").Trim();
+           // var ro_content = File.ReadAllText("/sys/block/" + device + "/ro").Trim();
 
-                device_list.Add(block_device);
-            }
+           returnedValue = removableContent == "1";
         }
-        return device_list;
-    }
-    public static string GetUSBDeviceCapacity(string device)
-    {
-        string device_capacity = CoreCommands.ExecShellCommand("lsblk", "--output SIZE --noheadings --nodeps " + device).Trim();
 
-        return device_capacity;
-    }
-
-    public static string GetUSBDeviceModel(string device)
-    {
-        string device_model = CoreCommands.ExecShellCommand("lsblk", "--output MODEL --noheadings --nodeps " + device).Trim();
-
-        return device_model;
-    }
-
-    static bool IsRemovable(string device)
-    {
-        bool returned_value = false;
-
-        string sysfs_block_device_dir = "/sys/block/" + device;
-
-        if (File.Exists(sysfs_block_device_dir + "/removable"))
-        {
-            string removable_content = File.ReadAllText("/sys/block/"+device+"/removable").Trim();
-            string ro_content = File.ReadAllText("/sys/block/"+device+"/ro").Trim();
-
-            if(removable_content == "1") //& ro_content == "0"
-            {
-                returned_value = true;
-            }
-            else
-            {
-                returned_value = false;
-            }
-        }
-        return returned_value;
+        return returnedValue;
     }
 }
