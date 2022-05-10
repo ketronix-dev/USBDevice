@@ -6,7 +6,8 @@ class Example
         var cap = USBDevice.GetUsbDeviceCapacity("/dev/sdb");
         var model = USBDevice.GetUsbDeviceModel("/dev/sdb");
         var ismounted = USBDevice.IsMounted("/dev/sdb");
-        Console.WriteLine("Device: " + text[0]);
+        var device = text.Count == 0 ? "Not Found":text[0];
+        Console.WriteLine("Device: " + device);
         Console.WriteLine("Capacity: " + cap);
         Console.WriteLine("Model: " + model);
         Console.WriteLine("Mounted: " + ismounted);

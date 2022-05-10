@@ -15,19 +15,56 @@ class USBDevice
 
     public static string GetUsbDeviceCapacity(string device)
     {
-        return CoreCommands.ExecShellCommand("lsblk", "--output SIZE --noheadings --nodeps " + device)
-            .Trim();
+        var returned = "Empty device variable";
+
+        if (device != "")
+        {
+            var output = CoreCommands.ExecShellCommand("lsblk", "--output SIZE --noheadings --nodeps " + device)
+                .Trim();
+            if(output != "")
+            {
+                returned = output;
+            }
+            else
+            {
+                returned = "Not found device";
+            }
+        }
+        else
+        {
+            returned = "Empty device variable";
+        }
+        return returned;
     }
 
     public static string GetUsbDeviceModel(string device)
     {
-        return CoreCommands.ExecShellCommand("lsblk", "--output MODEL --noheadings --nodeps " + device)
-            .Trim();
+        var returned = "Empty device variable";
+
+        if (device != "")
+        {
+            var output = CoreCommands.ExecShellCommand("lsblk", "--output MODEL --noheadings --nodeps " + device)
+                .Trim();
+            if(output != "")
+            {
+                returned = output;
+            }
+            else
+            {
+                returned = "Not found device";
+            }
+        }
+        else
+        {
+            returned = "Empty device variable";
+        }
+        return returned;
     }
 
     public static bool IsMounted(string device)
     {
-        return CoreCommands.ExecShellCommand("df").Contains("/dev/sdb");
+        var returned = device != "" ? CoreCommands.ExecShellCommand("df").Contains(device) : false;
+        return returned;
     }
 
     public static bool IsRemovable(string device)
