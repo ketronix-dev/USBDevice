@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/fast/Документы/GetUSBDevice/GetUSBDevice.csproj": {}
+    "/home/fast/Документы/Projects/USBDevice/GetUSBDevice.csproj": {}
   },
   "projects": {
-    "/home/fast/Документы/GetUSBDevice/GetUSBDevice.csproj": {
+    "/home/fast/Документы/Projects/USBDevice/GetUSBDevice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/fast/Документы/GetUSBDevice/GetUSBDevice.csproj",
+        "projectUniqueName": "/home/fast/Документы/Projects/USBDevice/GetUSBDevice.csproj",
         "projectName": "GetUSBDevice",
-        "projectPath": "/home/fast/Документы/GetUSBDevice/GetUSBDevice.csproj",
+        "projectPath": "/home/fast/Документы/Projects/USBDevice/GetUSBDevice.csproj",
         "packagesPath": "/home/fast/.nuget/packages/",
-        "outputPath": "/home/fast/Документы/GetUSBDevice/obj/",
+        "outputPath": "/home/fast/Документы/Projects/USBDevice/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/fast/.nuget/NuGet/NuGet.Config"

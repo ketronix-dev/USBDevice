@@ -25,6 +25,11 @@ class USBDevice
             .Trim();
     }
 
+    public static bool IsMounted(string device)
+    {
+        return CoreCommands.ExecShellCommand("df").Contains("/dev/sdb");
+    }
+
     public static bool IsRemovable(string device)
     {
         var returnedValue = false;

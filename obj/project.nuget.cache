@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nRAwWd8RnANUDVs7zUY6TZ89jLOQPt6AkSbb6HjP/1h5KmOC/DIHrp9b7PCNrUpWNGloLpVuw6O50TNajcodLA==",
+  "dgSpecHash": "euIBJX0xNqV0MJlID8CggdlKfje66utYsVjlO2/aEn68n5IGBGlbXFzqpVhz6fBKeNcKW4ZsQV2nHjpLaL0SiQ==",
   "success": true,
-  "projectFilePath": "/home/fast/Документы/GetUSBDevice/GetUSBDevice.csproj",
+  "projectFilePath": "/home/fast/Документы/Projects/USBDevice/GetUSBDevice.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
