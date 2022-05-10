@@ -1,7 +1,5 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace GetUSBDevice;
-
 class USBDevice
 {
     public static List<string> GetList()

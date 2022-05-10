@@ -1,7 +1,5 @@
 using System.Diagnostics;
 
-namespace GetUSBDevice;
-
 public static class CoreCommands
 {
     public static string ExecShellCommand(string command, string arguments = "")
