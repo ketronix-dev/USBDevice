@@ -13,8 +13,10 @@ class Example
         Console.WriteLine("Mounted: " + ismounted);
 
         /** Requiret root
-        int output = USBDevice.MountDevice("/dev/sdb1", "/mnt");
-        Console.WriteLine(output); 
+        int outputUmount = USBDevice.UnmountDevice("/dev/sdb1");
+        Console.WriteLine(outputUmount);
+        int outputMount = USBDevice.MountDevice("/dev/sdb1", "/mnt");
+        Console.WriteLine(outputMount); 
         **/
     }
 }

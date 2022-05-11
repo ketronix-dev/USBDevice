@@ -80,6 +80,19 @@ class USBDevice
         }
     }
 
+    public static int UnmountDevice(string device)
+    {
+        if(IsMounted(device))
+        {
+            CoreCommands.ExecShellCommand("umount", device );
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+
     public static bool IsRemovable(string device)
     {
         var returnedValue = false;
