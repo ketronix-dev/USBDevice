@@ -11,5 +11,10 @@ class Example
         Console.WriteLine("Capacity: " + cap);
         Console.WriteLine("Model: " + model);
         Console.WriteLine("Mounted: " + ismounted);
+
+        /** Requiret root
+        int output = USBDevice.MountDevice("/dev/sdb1", "/mnt");
+        Console.WriteLine(output); 
+        **/
     }
 }
