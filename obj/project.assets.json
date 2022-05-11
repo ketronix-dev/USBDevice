@@ -8,7 +8,7 @@
     "net6.0": []
   },
   "packageFolders": {
-    "/home/fast/.nuget/packages/": {}
+    "/root/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
@@ -16,11 +16,11 @@
       "projectUniqueName": "/home/fast/Документы/Projects/USBDevice/GetUSBDevice.csproj",
       "projectName": "GetUSBDevice",
       "projectPath": "/home/fast/Документы/Projects/USBDevice/GetUSBDevice.csproj",
-      "packagesPath": "/home/fast/.nuget/packages/",
+      "packagesPath": "/root/.nuget/packages/",
       "outputPath": "/home/fast/Документы/Projects/USBDevice/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/fast/.nuget/NuGet/NuGet.Config"
+        "/root/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"

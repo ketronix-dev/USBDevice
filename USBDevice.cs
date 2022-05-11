@@ -13,9 +13,9 @@ class USBDevice
             .ToList();
     }
 
-    public static string GetUsbDeviceCapacity(string device)
+    public static float GetUsbDeviceCapacity(string device)
     {
-        var returned = "Empty device variable";
+        var returned = 0f;
 
         if (device != "")
         {
@@ -23,16 +23,16 @@ class USBDevice
                 .Trim();
             if(output != "")
             {
-                returned = output;
+                returned = float.Parse(Regex.Replace(output, "G",""));
             }
             else
             {
-                returned = "Not found device";
+                returned = 0f;
             }
         }
         else
         {
-            returned = "Empty device variable";
+            returned = 0f;
         }
         return returned;
     }
@@ -65,6 +65,19 @@ class USBDevice
     {
         var returned = device != "" ? CoreCommands.ExecShellCommand("df").Contains(device) : false;
         return returned;
+    }
+
+    public static int MountDevice(string device, string mountpoint)
+    {
+        if(IsMounted(device))
+        {
+            return 1;
+        }
+        else
+        {
+            CoreCommands.ExecShellCommand("mount", device + " " + mountpoint);
+            return 0;
+        }
     }
 
     public static bool IsRemovable(string device)
