@@ -1,112 +1,125 @@
-﻿using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
+using Core;
 
-class USBDevice
+namespace USB
 {
-    public static List<string> GetList()
+    class USBDevice
     {
-        var devicesListFromLsbls = CoreCommands.ExecShellCommand("lsblk", "--output NAME --noheadings --nodeps");
-
-        return Regex.Replace(devicesListFromLsbls, "sr[0-9]|cdrom[0-9]", "")
-            .Split()
-            .Where(IsRemovable)
-            .Select(x => "/dev/" + x)
-            .ToList();
-    }
-
-    public static float GetUsbDeviceCapacity(string device)
-    {
-        var returned = 0f;
-
-        if (device != "")
+        public static List<string> GetList()
         {
-            var output = CoreCommands.ExecShellCommand("lsblk", "--output SIZE --noheadings --nodeps " + device)
-                .Trim();
-            if(output != "")
+            var devicesListFromLsbls = CoreCommands.ExecShellCommand("lsblk", "--output NAME --noheadings --nodeps");
+
+            List<string> devices = Regex.Replace(devicesListFromLsbls, "sr[0-9]|cdrom[0-9]", "")
+                .Split()
+                .Where(IsRemovable)
+                .Select(x => "/dev/" + x)
+                .ToList();
+            if (devices.Count >= 1)
             {
-                returned = float.Parse(Regex.Replace(output, "G",""));
+                return devices;
+            }
+            else
+            {
+                devices.Add("None");
+                return devices;
+            }
+        }
+
+        public static float GetUsbDeviceCapacity(string device)
+        {
+            var returned = 0f;
+
+            if (device != "")
+            {
+                var output = CoreCommands.ExecShellCommand("lsblk", "--output SIZE --noheadings --nodeps " + device)
+                    .Trim();
+                if (output != "")
+                {
+                    returned = float.Parse(Regex.Replace(output, "G", ""));
+                }
+                else
+                {
+                    returned = 0f;
+                }
             }
             else
             {
                 returned = 0f;
             }
+            return returned;
         }
-        else
-        {
-            returned = 0f;
-        }
-        return returned;
-    }
 
-    public static string GetUsbDeviceModel(string device)
-    {
-        var returned = "Empty device variable";
-
-        if (device != "")
+        public static string GetUsbDeviceModel(string device)
         {
-            var output = CoreCommands.ExecShellCommand("lsblk", "--output MODEL --noheadings --nodeps " + device)
-                .Trim();
-            if(output != "")
+            var returned = "Empty device variable";
+
+            if (device != "")
             {
-                returned = output;
+                var output = CoreCommands.ExecShellCommand("lsblk", "--output MODEL --noheadings --nodeps " + device)
+                    .Trim();
+                if (output != "")
+                {
+                    returned = output;
+                }
+                else
+                {
+                    returned = "Not found device";
+                }
             }
             else
             {
-                returned = "Not found device";
+                returned = "Empty device variable";
+            }
+            return returned;
+        }
+
+        public static bool IsMounted(string device)
+        {
+            var returned = device != "" ? CoreCommands.ExecShellCommand("df").Contains(device) : false;
+            return returned;
+        }
+
+        public static int MountDevice(string device, string mountpoint)
+        {
+            if (IsMounted(device))
+            {
+                return 1;
+            }
+            else
+            {
+                CoreCommands.ExecShellCommand("mount", device + " " + mountpoint);
+                return 0;
             }
         }
-        else
+
+        public static int UnmountDevice(string device)
         {
-            returned = "Empty device variable";
-        }
-        return returned;
-    }
-
-    public static bool IsMounted(string device)
-    {
-        var returned = device != "" ? CoreCommands.ExecShellCommand("df").Contains(device) : false;
-        return returned;
-    }
-
-    public static int MountDevice(string device, string mountpoint)
-    {
-        if(IsMounted(device))
-        {
-            return 1;
-        }
-        else
-        {
-            CoreCommands.ExecShellCommand("mount", device + " " + mountpoint);
-            return 0;
-        }
-    }
-
-    public static int UnmountDevice(string device)
-    {
-        if(IsMounted(device))
-        {
-            CoreCommands.ExecShellCommand("umount", device );
-            return 0;
-        }
-        else
-        {
-            return 1;
-        }
-    }
-
-    public static bool IsRemovable(string device)
-    {
-        var returnedValue = false;
-
-        var sysfsBlockDeviceDir = "/sys/block/" + device;
-
-        if (File.Exists(sysfsBlockDeviceDir + "/removable"))
-        {
-            var removableContent = File.ReadAllText("/sys/block/" + device + "/removable").Trim();
-           // var ro_content = File.ReadAllText("/sys/block/" + device + "/ro").Trim();
-
-           returnedValue = removableContent == "1";
+            if (IsMounted(device))
+            {
+                CoreCommands.ExecShellCommand("umount", device);
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
         }
 
-        return returnedValue;
+        public static bool IsRemovable(string device)
+        {
+            var returnedValue = false;
+
+            var sysfsBlockDeviceDir = "/sys/block/" + device;
+
+            if (File.Exists(sysfsBlockDeviceDir + "/removable"))
+            {
+                var removableContent = File.ReadAllText("/sys/block/" + device + "/removable").Trim();
+                // var ro_content = File.ReadAllText("/sys/block/" + device + "/ro").Trim();
+
+                returnedValue = removableContent == "1";
+            }
+
+            return returnedValue;
+        }
     }
 }
