@@ -96,7 +96,10 @@ namespace USB
         {
             if (IsMounted(device))
             {
-                CoreCommands.ExecShellCommand("umount", device);
+                for (int i = 0; i <= 9; i++)
+                {
+                    CoreCommands.ExecShellCommand("umount", device + i.ToString());
+                }
                 return 0;
             }
             else
